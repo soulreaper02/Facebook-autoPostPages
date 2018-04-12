@@ -6,12 +6,12 @@ script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.4.0/lodash.js"></
    
 
   FB.init({
-    appId      : '569045470119197',
+    appId      : 'XXXXXXXXXXXXXX',
     status     : true,
     xfbml      : true,
     version    : 'v2.7'
   })
-  access_token = 'EAAIFizkbhR0BAK4FtK8F0G51YCPQxAAJVYtGXuwc1XEm83YAmrTuIDngfd0SOIMXQ0x6VURiqFqZCiCnWSv477xOZBw2L86HXOFF2ZAtiWbr1Pcfiz1TkWsekzdcgN7m1QeTV85XPQnnPdZCibv8kIDaFp6NDGzLFXK4OO2nMgZDZD';
+  access_token = 'YOUR_ACCESS_TOKEN';
   
 
 
@@ -26,12 +26,11 @@ FB.api(
     FB.api(page_id,  { access_token }, function(result) {
     $(result.data).each(function(index, posts) {
     var Messages = (posts.message)?posts.message:'';
-    var words = ['ballet', 'exciting','tickets','book','event','amazing','life','Onlybot'];
+    var words = ['ballet', 'exciting','tickets','book','event','amazing','life','Onlybot']; //this is where you specify the keywords you want to match
     for(i = 0; i < words.length; i++){
         var pattern = new RegExp(words[i],'i');
         if (pattern.test(Messages) != false) {
             var MatchedIDs = posts.id;
-            //console.log(MatchedIDs);
               FB.api(
                   '/' + MatchedIDs+'/comments?comments.limit(100)',
                   'GET',
